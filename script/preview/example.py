@@ -9,9 +9,6 @@ import mathutils
 from mocap_blender import file, mesh, utils, collection, material
 
 from mocap_blender import path as PATH
-from .common import change_mat_alpha, change_mat_color
-
-BLEND_SETUP = os.path.join(PATH.ASSET_PATH, "base.blend")
 
 
 def build_scene(data, action=None, frames=None):
@@ -100,3 +97,7 @@ def load_data_to_scene(data, *, frames=None):
             mat = interacted1_mat_copy
         else:
             mat = interacted_mat_copy
+
+
+if __name__ == "__main__":
+    load_data_to_scene("./data/example/example_000000.pkl")

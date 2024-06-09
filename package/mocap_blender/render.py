@@ -1,6 +1,7 @@
 import bpy
 import os
 
+
 def render(filename, res_x=640, res_y=480):
     path = filename
     dirname = os.path.dirname(path)
