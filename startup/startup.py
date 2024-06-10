@@ -1,6 +1,6 @@
 import importlib
 import os
-from figo_common import path
+from mocap_blender import path
 
 dir = path.STARTUP_PATH
 
