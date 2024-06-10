@@ -1,5 +1,5 @@
 import bpy
-
+from .bpy_obj import removeObj
 
 def getOrNewCollection(name, parent=None):
     if parent is None:
@@ -21,7 +21,7 @@ def removeCollection(name, withobject=False):
     collection = bpy.data.collections.get(name)
     if withobject:
         for obj in collection.objects:
-            bpy.data.objects.remove(obj, do_unlink=True)
+            removeObj(obj, do_unlink=True)
         for col in collection.children:
             removeCollection(col.name, withobject=True)
     bpy.data.collections.remove(collection)

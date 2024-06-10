@@ -1,15 +1,15 @@
 import bpy
-from .errors import MeshError
-from . import material, utils
+from .error import MeshError
+from . import material, util
 import numpy as np
 from mathutils import Vector
 
 
 def createMesh(name, *, vertices, faces=[], edges=[], matrix=None, mat=None, collection=None, smooth=True):
 
-    vertices = utils.ndarray_pydata.parse(vertices)
+    vertices = util.ndarray_pydata.parse(vertices)
     if len(faces) > 0:
-        faces = utils.ndarray_pydata.parse(faces)
+        faces = util.ndarray_pydata.parse(faces)
 
     # 创建mesh
     mesh = bpy.data.meshes.new(name)
@@ -46,7 +46,7 @@ def smoothMesh(mesh):
         poly.use_smooth = True
 
 
-def getBboxCenter(obj):
+def getBBoxCenter(obj):
     local_bbox_center = 0.125 * sum((Vector(b) for b in obj.bound_box), Vector())
     global_bbox_center = obj.matrix_world @ local_bbox_center
     return global_bbox_center

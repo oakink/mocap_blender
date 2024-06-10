@@ -129,6 +129,8 @@ celerybeat-schedule
 /bkp
 /notebook
 /tmp
+/temp
+/temp.*
 
 # whitelist /asset/markerset
 # !/asset/markerset

@@ -33,15 +33,16 @@ else:
 
     for f in files:
         try:
+            input_path = os.path.join(input_dir, f)
             output_path = os.path.join(output_dir, f"{f}.png")
             if os.path.exists(output_path):
                 continue
 
             def _render():
                 # file.saveFile(output_path)
-                render.render(output_path, 1200, 900)
+                render.render(output_path, 1920, 1080) # slight distortion
 
-            build_scene.build_hand_scene(f, _render)
+            build_scene(input_path, _render)
         except Exception as e:
             print(f"error: {f}:\n{traceback.format_exc(e)}")
             continue
