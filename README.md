@@ -55,6 +55,9 @@
 
     The output logs are generated under directory `temp`. Check these logs for debug usage.
 
+View the introductory video on youtube:
+[![Introduction](https://img.youtube.com/vi/VmMDvRdfMmM/0.jpg)](https://www.youtube.com/watch?v=VmMDvRdfMmM)
+
 ```bibtex
 
 ```
