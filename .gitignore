@@ -132,5 +132,8 @@ celerybeat-schedule
 /temp
 /temp.*
 
-# whitelist /asset/markerset
-# !/asset/markerset
+# whitelist essential
+!/asset/base.blend
+!/data/example/
+/data/example/*
+!/data/example/example__000000.pkl
