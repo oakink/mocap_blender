@@ -70,38 +70,38 @@ def load_data_to_scene(data, *, frames=None):
 
     hand_coll = collection.getOrNewCollection("hand")
     h = mesh.createMesh("hand", vertices=verts, faces=faces, matrix=matrix, collection=hand_coll)
-    
+
     # create camera
     cam_extr = data["cam_extr"]
     cam_intr = data["cam_intr"]
     cam_transf = mathutils.Matrix(cam_extr).inverted()
     cam_transf = affine @ cam_transf @ affine.inverted() @ offset.inverted()
-    
-    CAM_SIZE=(848,480)
+
+    CAM_SIZE = (848, 480)
     cam = camera.createCamera("camera_main", matrix=cam_transf, cam_intr=cam_intr, cam_size=CAM_SIZE)
-    
+
     for _el in bpy.data.images:
         if _el.name == "bg":
-            bpy.data.images.remove(_el)    
+            bpy.data.images.remove(_el)
     background = data.get("bg", None)
     if background is not None:
         cam.data.show_background_images = True
         bg = cam.data.background_images.new()
         # background = background.astype(np.float16)
         _background = np.zeros((background.shape[0], background.shape[1], 4), dtype=np.float16)
-        _background[:, :, 0:3] = background[:, :, (2,1,0)] / 255
+        _background[:, :, 0:3] = background[:, :, (2, 1, 0)] / 255
         _background[:, :, 3] = 1.0
         _background = np.flip(_background, axis=0)
         bg_img = bpy.data.images.new('bg', background.shape[1], background.shape[0], alpha=True, float_buffer=False)
         bg_img.pixels = _background.ravel()
         bg.image = bg_img
-        
+
         # actual render needs compositor
         tree = bpy.context.scene.node_tree
         for n in tree.nodes:
             if n.type == 'IMAGE' and n.label == 'BackgroundCompositor':
                 n.image = bg_img
-    
+
 
 if __name__ == "__main__":
     load_data_to_scene("./data/example/example__000000.pkl")
